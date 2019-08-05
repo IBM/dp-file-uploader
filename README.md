@@ -1,6 +1,6 @@
 # dp-file-uploader
 
-Tool for easily uploading files to a DataPower Gateway file system.
+Tool for easily uploading files to an IBM DataPower® Gateway file system.
 
 ![GitHub release](https://img.shields.io/github/release/IBM/dp-file-uploader)
 ![GitHub](https://img.shields.io/github/license/IBM/dp-file-uploader)
@@ -50,13 +50,13 @@ xml-mgmt [up]
 
 ## Usage
 
-This script can be used to upload a single file, or multiple files, to a target DataPower Gateway filesystem. You control the behavior of the script through command-line arguments. The minimum usage would be as follows:
+This script can be used to upload a single file, or multiple files, to a target IBM DataPower® Gateway filesystem. You control the behavior of the script through command-line arguments. The minimum usage would be as follows:
 
 ```bash
 $ dp-file-uploader my.datapower.com "local:///sandbox/" file.txt
 ```
 
-This would upload the `file.txt` file to the DataPower Gateway at hostname (`my.datapower.com`) and store the file within the `local:///sandbox/` directory.
+This would upload the `file.txt` file to the IBM DataPower® Gateway at hostname (`my.datapower.com`) and store the file within the `local:///sandbox/` directory.
 
 Since no other arguments were provided, some defaults were used:
 
