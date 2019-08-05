@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import argparse
 import base64
 import requests
 import urllib3
@@ -14,23 +10,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Global for verbose logging, set via --verbose argument
 VERBOSE = False
-
-
-def process_args():
-    argparser = argparse.ArgumentParser(description='Push file(s) to a DataPower Gateway via the XML Management Interface.')
-    argparser.add_argument('hostname', type=str, nargs=1, help='hostname of DataPower Gateway to upload file(s)')
-    argparser.add_argument('directory', type=str, nargs=1, help='destination directory, i.e. "local:///sandbox/"')
-    argparser.add_argument('-P', '--port', type=int, nargs=1, help='xml-mgmt port, default: 5550')
-    argparser.add_argument('-u', '--user', type=str, nargs=1, help='username, default: admin')
-    argparser.add_argument('-p', '--password', type=str, nargs=1, help='password, default: admin')
-    argparser.add_argument('-v', '--verbose', action='store_true', help='verbose output')
-    argparser.add_argument('fileName', type=str, nargs='+', help='file(s) to push')
-    args = argparser.parse_args()
-    if args.verbose:
-        global VERBOSE
-        VERBOSE = True
-        print(args)
-    return args
 
 
 def get_user(args):
@@ -116,8 +95,11 @@ def process_file(filename, directory, url, user, password):
             print('Reason:', reason.group(1))
 
 
-def main():
-    args = process_args()
+def run_with_args(args):
+    if args.verbose:
+        global VERBOSE
+        VERBOSE = True
+        print(args)
     hostname = args.hostname[0]
     port = get_port(args)
     url = build_url(hostname, port)
@@ -126,7 +108,3 @@ def main():
     directory = normalize_directory(args.directory[0])
     for filename in args.fileName:
         process_file(filename, directory, url, user, password)
-
-
-if __name__ == "__main__":
-    main()
