@@ -42,7 +42,7 @@ xml-mgmt [up]
 3. Validate the installation
 
     ```bash
-    $ dp-file-uploader -h
+    $ dp-file-uploader --version
     ```
 
 ## Usage
@@ -83,4 +83,4 @@ $ dp-file-uploader my.datapower.com "local:///sandbox/" file1.txt file2.txt file
 
 ## Troubleshooting
 
-You can enable verbose output via the `-v, --verbose` command line argument to get a little more detail from the script as it runs. If this does not help to solve your problem, please feel free to [open an issue](https://github.com/IBM/dp-file-uploader/issues/new).
+You can enable verbose output via the `-V, --verbose` command line argument to get a little more detail from the script as it runs. If this does not help to solve your problem, please feel free to [open an issue](https://github.com/IBM/dp-file-uploader/issues/new).
