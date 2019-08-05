@@ -57,8 +57,10 @@ def print_pretty_xml(xml_str):
 
 
 def build_xml(directory, filename, data):
-    print('Building XML')
     fileTarget = directory + filename
+    if VERBOSE:
+        print('Building XML request')
+        print('File target:', fileTarget)
     fileContent = base64.b64encode(data).decode('ascii')
     xmlTemplate = '''<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
                         <env:Body>
@@ -80,7 +82,8 @@ def process_file(filename, directory, url, user, password):
     with open(filename, 'rb') as lines:
         data = lines.read()
     xml = build_xml(directory, filename, data)
-    print('Sending POST')
+    if VERBOSE:
+        print('Sending POST request')
     r = requests.post(url, auth=(user, password), data=xml, verify=False)
     if VERBOSE:
         print('HTTP Response Code:', r.status_code)
