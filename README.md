@@ -2,6 +2,9 @@
 
 Tool for easily uploading files to a DataPower Gateway file system.
 
+![GitHub release](https://img.shields.io/github/release/IBM/dp-file-uploader)
+![GitHub](https://img.shields.io/github/license/IBM/dp-file-uploader)
+
 ## Pre-requisites
 
 ### XML Management Interface
