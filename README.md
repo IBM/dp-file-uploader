@@ -27,7 +27,7 @@ xml-mgmt [up]
 
 ## Installation
 
-1. Clone or download the repository
+1. Clone or download the repository from the [Releases](https://github.com/IBM/dp-file-uploader/releases) page
 
     ```bash
     $ git clone git@github.com:IBM/dp-file-uploader.git
