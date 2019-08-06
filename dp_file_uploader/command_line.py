@@ -1,6 +1,6 @@
 import dp_file_uploader
-
 import argparse
+
 
 def get_version():
     version = {}
@@ -8,6 +8,7 @@ def get_version():
         exec(fp.read(), version)
     version_str = 'v{}'.format(version['__version__'])
     return version_str
+
 
 def process_args():
     argparser = argparse.ArgumentParser(description='Push file(s) to a DataPower Gateway via the XML Management Interface.')
