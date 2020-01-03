@@ -1,10 +1,14 @@
-import dp_file_uploader
 import argparse
+import os.path
+
+import dp_file_uploader
 
 
 def get_version():
     version = {}
-    with open('./dp_file_uploader/version.py') as fp:
+    here = os.path.abspath(os.path.dirname(__file__))
+    version_file = os.path.join(here, 'version.py')
+    with open(version_file) as fp:
         exec(fp.read(), version)
     version_str = 'v{}'.format(version['__version__'])
     return version_str
