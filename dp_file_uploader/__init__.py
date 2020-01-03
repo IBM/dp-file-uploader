@@ -3,6 +3,7 @@ import requests
 import urllib3
 import re
 import xml.dom.minidom
+import os.path
 
 
 # Disable warnings, as XML Mgmt often has a self-signed certificate
@@ -86,7 +87,11 @@ def process_file(filename, directory, url, user, password):
     print('Preparing to send file: ' + filename)
     with open(filename, 'rb') as lines:
         data = lines.read()
-    xml = build_xml(directory, filename, data)
+    if os.path.isabs(filename):
+        target_filename = os.path.basename(filename)
+    else:
+        target_filename = os.path.basename(os.path.abspath(filename))
+    xml = build_xml(directory, target_filename, data)
     if VERBOSE:
         print('Sending POST request')
     r = requests.post(url, auth=(user, password), data=xml, verify=False)
