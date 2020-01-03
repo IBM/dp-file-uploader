@@ -52,14 +52,13 @@ def build_url(hostname, port):
 
 def print_pretty_xml(xml_str):
     length = len(xml_str)
-    print(f'XML payload string length = {length}')
+    print(f'XML string length = {length}')
     if length > 10000:
         print('Omitting XML nodeset from log due to size')
     else:
-        print('Generated XML:\n')
         dom = xml.dom.minidom.parseString(xml_str)
         dom_pretty = dom.toprettyxml()
-        print(dom_pretty)
+        print('\n' + dom_pretty)
 
 
 def build_xml(directory, filename, data):
@@ -78,6 +77,7 @@ def build_xml(directory, filename, data):
     xmlRequestStr = xmlTemplate.format(fileTarget, fileContent).replace('\n', '')
     xmlRequest = re.sub(r'> +<', '><', xmlRequestStr)
     if VERBOSE:
+        print('Generated XML:')
         print_pretty_xml(xmlRequest)
     return xmlRequest
 
@@ -92,7 +92,7 @@ def process_file(filename, directory, url, user, password):
     r = requests.post(url, auth=(user, password), data=xml, verify=False)
     if VERBOSE:
         print('HTTP Response Code:', r.status_code)
-        print('Response XML:\n')
+        print('Response XML:')
         print_pretty_xml(r.text)
     if r.status_code == 200:
         if '<dp:result>OK</dp:result>' in r.text:
