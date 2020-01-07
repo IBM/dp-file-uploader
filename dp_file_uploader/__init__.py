@@ -96,7 +96,9 @@ def process_file(filename, directory, url, user, password):
         print('Sending POST request')
     r = requests.post(url, auth=(user, password), data=xml, verify=False)
     if VERBOSE:
+        print('HTTP Request Headers:', r.request.headers)
         print('HTTP Response Code:', r.status_code)
+        print('HTTP Response Headers:', r.headers)
         print('Response XML:')
         print_pretty_xml(r.text)
     if r.status_code == 200:
