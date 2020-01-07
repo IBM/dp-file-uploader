@@ -94,7 +94,8 @@ def process_file(filename, directory, url, user, password):
     xml = build_xml(directory, target_filename, data)
     if VERBOSE:
         print('Sending POST request')
-    r = requests.post(url, auth=(user, password), data=xml, verify=False)
+    headers = { 'Content-Type': 'text/xml' }
+    r = requests.post(url, auth=(user, password), data=xml, headers=headers, verify=False)
     if VERBOSE:
         print('HTTP Request Headers:', r.request.headers)
         print('HTTP Response Code:', r.status_code)
