@@ -37,11 +37,23 @@ def get_port(args):
     return port
 
 
-def normalize_directory(directory):
-    if directory.endswith('/'):
-        return directory
+def get_domain(args):
+    if args.domain is not None:
+        domain = args.domain[0]
     else:
-        return directory + '/'
+        domain = None
+    return domain
+
+
+def normalize_directory(directory, domain):
+    prefix, suffix = directory.split(":")
+    _, subpath = suffix.split("///")
+    if not subpath.endswith('/'):
+        subpath = subpath + '/'
+    if domain is not None:
+        return prefix + ":///" + domain + "/" + subpath
+    else:
+        return prefix + ":///" + subpath
 
 
 def build_url(hostname, port):
@@ -121,6 +133,7 @@ def run_with_args(args):
     url = build_url(hostname, port)
     user = get_user(args)
     password = get_password(args)
-    directory = normalize_directory(args.directory[0])
+    domain = get_domain(args)
+    directory = normalize_directory(args.directory[0], domain)
     for filename in args.fileName:
         process_file(filename, directory, url, user, password)

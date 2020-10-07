@@ -21,6 +21,7 @@ def process_args():
     argparser.add_argument('-P', '--port', type=int, nargs=1, help='xml-mgmt port, default: 5550')
     argparser.add_argument('-u', '--user', type=str, nargs=1, help='username, default: admin')
     argparser.add_argument('-p', '--password', type=str, nargs=1, help='password, default: admin')
+    argparser.add_argument('-d', '--domain', type=str, nargs=1, help='application domain')
     argparser.add_argument('-V', '--verbose', action='store_true', help='verbose output')
     argparser.add_argument('-v', '--version', action='version', version=get_version())
     argparser.add_argument('fileName', type=str, nargs='+', help='file(s) to push')
